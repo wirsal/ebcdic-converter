@@ -1,0 +1,75 @@
+server:
+  appName: "Cardlink Data Extractor"
+  version: "2.0.0"
+  batchSize: 800       # maximum line
+  waitDuration: 60  # dalam second
+
+file:
+  baseData: "/PathToYour/ftp/Data/"
+  baseResult: "/PathToYour/ftp/Result/"
+  baseBackup: "/PathToYour/ftp/Backup/"
+  baseLog: "/PathToYour/ftp/Log"
+  Log:
+    ErrorLog: "error.txt"
+    Logging: "log.txt"
+  CPCRD:               
+    length: 1600
+    copybook: "CPS102"
+    fileCPCRD: "CPCRD.txt"
+  CPCUS:           
+    length: 495
+    copybook: "CPS103"
+    fileCPCUS: "CPCUS.txt"
+    fileCPCUS1: "CPCUS1.txt"
+    fileCPCUS2: "CPCUS2.txt"
+  CPMER:               
+    length: 11600
+    copybook: "CPS104"
+    fileCPMER: "CPMER.txt"
+  CPCRA:               
+    length: 1500
+    copybook: "CPS773"
+    fileCPCRA: "CPCRA.txt"
+  CPSMTF:              
+    length: 442
+    copybook: "CPS110"
+    fileCPSMTF: "CPSMTF.txt"
+  CPS110:
+    length: 400
+    copybook: "CPS110"
+    fileMIGS: "DCFMIGS.txt"
+    fileUI33: "CPDUI33.txt"
+    fileADAX: "ADAX.txt"
+    fileTOCP1: "TOCPEDC1.txt"
+    fileTOCP2: "TOCPEDC2.txt"
+  CPAHF:               
+    length: 191
+    copybook: "CPS114"  
+    fileCPAHF: "CPAHF.txt"
+  CPS120:
+    length: 350
+    copybook: "CPS120"
+    fileCXCHA: "CXCHA.txt"
+    fileCXCHU: "CXCHU.txt"
+  CPS123:
+    length: 136
+    copybook: "CPS123"
+    fileCPLMT: "CPLMT.txt"
+  CPS130:
+    length: 200
+    copybook: "CPS130"
+    fileCPOLST: "CPOLST.txt"
+    fileCPOLPT: "CPOLPT.txt"
+  EPTRANS:
+    length: 320
+    copybook : "EPS001"
+    fileEPTRANS: "EPTRANS.txt"
+  OADCTF:
+    length: 200
+    copybook : "OADCC03"
+    fileOADCTF: "OADCTF.txt"
+  OADCLG:
+    length: 800
+    copybook: "OADCC04"
+    fileOADCLGA: "OADCLOGB.txt"
+    fileOADCLGB: "OADCLOGB.txt"
