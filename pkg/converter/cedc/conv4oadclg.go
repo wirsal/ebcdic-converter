@@ -51,12 +51,17 @@ func Oadclog2txt(inputFilename string) bool {
 		}
 
 		if counter == batchSize {
-			if ok, err := utils.WriteFile(outputFilename, data); !ok {
-				utils.Error("Write error: %v", err)
+			if !utils.WriteAndCheck(outputFilename, data) {
 				return false
 			}
 			counter = 0
 			data = ""
+		}
+	}
+	// Tulis sisa data jika ada
+	if len(data) > 0 {
+		if !utils.WriteAndCheck(outputFilename, data) {
+			return false
 		}
 	}
 

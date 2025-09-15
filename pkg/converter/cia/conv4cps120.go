@@ -41,8 +41,7 @@ func Cps1202text(inputFilename string) bool {
 		}
 
 		if counter == batchSize {
-			if ok, err := utils.WriteFile(outputFilename, data); !ok {
-				utils.Error("Write error: %v", err)
+			if !utils.WriteAndCheck(outputFilename, data) {
 				return false
 			}
 			counter = 0
@@ -52,8 +51,7 @@ func Cps1202text(inputFilename string) bool {
 
 	// Tulis sisa data jika ada
 	if len(data) > 0 {
-		if ok, err := utils.WriteFile(outputFilename, data); !ok {
-			utils.Error("Write error: %v", err)
+		if !utils.WriteAndCheck(outputFilename, data) {
 			return false
 		}
 	}

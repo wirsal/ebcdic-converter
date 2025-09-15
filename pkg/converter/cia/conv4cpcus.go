@@ -72,8 +72,7 @@ func Cpcus2text(inputFilename string) bool {
 
 		// Flush if hit batchSize
 		if numRecord == batchSize {
-			if ok, err := utils.WriteFile(outputFilename, data); !ok {
-				log.Fatalf("Write error: %v", err)
+			if !utils.WriteAndCheck(outputFilename, data) {
 				return false
 			}
 			numRecord = 0
@@ -83,8 +82,7 @@ func Cpcus2text(inputFilename string) bool {
 
 	// Tulis sisa data
 	if len(data) > 0 {
-		if ok, err := utils.WriteFile(outputFilename, data); !ok {
-			log.Fatalf("Write error: %v", err)
+		if !utils.WriteAndCheck(outputFilename, data) {
 			return false
 		}
 	}

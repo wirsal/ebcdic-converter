@@ -1,7 +1,6 @@
 package cia
 
 import (
-	"log"
 	"time"
 	"unicode/utf8"
 
@@ -42,9 +41,8 @@ func Cpols2text(inputFilename string) bool {
 			data += output
 		}
 		if counter == batchSize {
-			b, e := utils.WriteFile(outputFilename, data)
-			if !b {
-				log.Fatal(e.Error())
+			if !utils.WriteAndCheck(outputFilename, data) {
+				return false
 			}
 			counter = 0
 			data = ""
@@ -52,8 +50,7 @@ func Cpols2text(inputFilename string) bool {
 	}
 	// Tulis sisa data jika ada
 	if len(data) > 0 {
-		if ok, err := utils.WriteFile(outputFilename, data); !ok {
-			utils.Error("Write error: %v", err)
+		if !utils.WriteAndCheck(outputFilename, data) {
 			return false
 		}
 	}

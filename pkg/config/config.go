@@ -29,7 +29,7 @@ func InitConfig() {
 
 	// Baca config
 	if err := viper.ReadInConfig(); err != nil {
-		utils.Debug("⚠️ Gagal membaca config: %v", err)
+		utils.Error("⚠️ Failed to read config: %v", err)
 		if envr == "production" {
 			os.Exit(1)
 		}
