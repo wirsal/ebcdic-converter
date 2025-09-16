@@ -56,7 +56,7 @@ func Cpcrd2text(inputFilename string) bool {
 			return false
 		}
 	}
-	utils.Info("%s Finished in %s", inputFilename, time.Since(start))
+	utils.Info("✅ %s Finished in %s", inputFilename, time.Since(start))
 	return true
 }
 

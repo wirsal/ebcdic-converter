@@ -120,7 +120,7 @@ func WaitUntilNextDay(filename string) {
 	next := now.AddDate(0, 0, 1).Truncate(24 * time.Hour)
 	duration := next.Sub(now)
 
-	Info("Finished processing %s. Waiting until the next day (%v)", filename, duration)
+	// Info("Finished processing %s. Waiting until the next day (%v)", filename, duration)
 	time.Sleep(duration)
 }
 

@@ -17,7 +17,7 @@ func runProcessor(configKey string, processor func(string) bool) {
 			if err != nil {
 				utils.Error("failed to move file: %v", err)
 			}
-			utils.Info("%s", filePath+" File has been successfully processed and moved.")
+			utils.Info("➡️  %s", filePath+" File has been successfully processed and moved.")
 		}
 		utils.WaitUntilNextDay(filePath)
 	}
