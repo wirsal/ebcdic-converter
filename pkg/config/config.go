@@ -29,7 +29,7 @@ func InitConfig() {
 
 	// Baca config
 	if err := viper.ReadInConfig(); err != nil {
-		utils.Debug("⚠️ Failed to read config file: %v", err)
+		utils.Error("⚠️ Failed to read config: %v", err)
 		if envr == "production" {
 			os.Exit(1)
 		}
@@ -38,6 +38,6 @@ func InitConfig() {
 	// Watch perubahan file config
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		utils.Debug("Config file has change: %s", e.Name)
+		utils.Debug("♻️ Config file has changed: %s", e.Name)
 	})
 }

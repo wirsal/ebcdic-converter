@@ -83,7 +83,7 @@ func ParseComp3SignedMode(str, mode string) string {
 func SafeDecode(funcName string, fn func() string) (result string) {
 	defer func() {
 		if r := recover(); r != nil {
-			Error(fmt.Sprintf("[%s] Decode error", funcName), fmt.Errorf("%v", r))
+			Error(fmt.Sprintf("[%s] decode error", funcName), fmt.Errorf("%v", r))
 			result = "" // fallback kalau error
 		}
 	}()

@@ -65,7 +65,7 @@ func DeleteResultFile(directory, fileName string) error {
 	resultFile := filepath.Join(directory, fileName)
 	err := os.Remove(resultFile)
 	if err != nil {
-		return fmt.Errorf("gagal menghapus file %s: %w", resultFile, err)
+		return fmt.Errorf("failed to delete file %s: %w", resultFile, err)
 	}
 	return nil
 }
@@ -78,13 +78,13 @@ func MoveFile(fileName string) error {
 	// Cek dan buat folder backup jika belum ada
 	err := os.MkdirAll(GetCurrentBackupDir(), os.ModePerm)
 	if err != nil {
-		return fmt.Errorf("gagal membuat folder tujuan: %w", err)
+		return fmt.Errorf("failed to create destination folder: %w", err)
 	}
 
 	// Pindahkan file
 	err = os.Rename(sourcePath, destPath)
 	if err != nil {
-		return fmt.Errorf("gagal memindahkan file: %w", err)
+		return fmt.Errorf("failed to move file: %w", err)
 	}
 
 	return nil
@@ -105,10 +105,11 @@ func FileExists(filename string) bool {
 func WaitForFileInDir(dir, filename string, waitDuration time.Duration) {
 	filePath := filepath.Join(dir, filename)
 	for !FileExists(filePath) {
-		Info("File %s belum ada. Menunggu %v", filePath, waitDuration)
+		Info("File %s does not exist yet. Waiting for %v", filePath, waitDuration)
+
 		time.Sleep(waitDuration)
 	}
-	Info("File ditemukan: %s", filePath)
+	Info("File found: %s", filePath)
 }
 
 // FileExists checks whether a file or directory exists at the given path.
@@ -119,7 +120,7 @@ func WaitUntilNextDay(filename string) {
 	next := now.AddDate(0, 0, 1).Truncate(24 * time.Hour)
 	duration := next.Sub(now)
 
-	Info("Selesai proses %s. Menunggu hingga hari berikutnya (%v)", filename, duration)
+	// Info("Finished processing %s. Waiting until the next day (%v)", filename, duration)
 	time.Sleep(duration)
 }
 
@@ -127,13 +128,13 @@ func WaitUntilNextDay(filename string) {
 func MergeFiles(file1, file2, output string) error {
 	out, err := os.Create(output)
 	if err != nil {
-		return fmt.Errorf("gagal membuat file output: %w", err)
+		return fmt.Errorf("failed to create output file: %w", err)
 	}
 	defer out.Close()
 
 	// Copy file1
 	if err := copyFileContent(file1, out); err != nil {
-		return fmt.Errorf("gagal menyalin isi file1: %w", err)
+		return fmt.Errorf("failed to copy contents of file1: %w", err)
 	}
 
 	// Tambahkan newline sebagai pemisah
@@ -141,7 +142,7 @@ func MergeFiles(file1, file2, output string) error {
 
 	// Copy file2
 	if err := copyFileContent(file2, out); err != nil {
-		return fmt.Errorf("gagal menyalin isi file2: %w", err)
+		return fmt.Errorf("failed to copy contents of file2: %w", err)
 	}
 
 	return nil

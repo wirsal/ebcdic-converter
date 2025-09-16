@@ -82,7 +82,7 @@ func logToFile(level logLevel, msg string, err error) {
 	}
 
 	if _, writeErr := writeLog(formatted); writeErr != nil {
-		log.Printf("[ERROR] Gagal menulis log ke file: %v\n", writeErr)
+		log.Printf("[ERROR] Failed to write log to file: %v\n", writeErr)
 	}
 }
 

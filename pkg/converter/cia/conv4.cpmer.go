@@ -56,8 +56,7 @@ func Cpmer2text(inputFilename string) bool {
 			}
 
 			if numRecord%batchSize == 0 {
-				if ok, err := utils.WriteFile(outputFilename, data); !ok {
-					utils.Error("Write error: %v", err)
+				if !utils.WriteAndCheck(outputFilename, data) {
 					return false
 				}
 				data = ""
@@ -66,13 +65,12 @@ func Cpmer2text(inputFilename string) bool {
 
 		// Tulis sisa data jika ada
 		if len(data) > 0 {
-			if ok, err := utils.WriteFile(outputFilename, data); !ok {
-				utils.Error("Write error: %v", err)
+			if !utils.WriteAndCheck(outputFilename, data) {
 				return false
 			}
 		}
 	}
-	utils.Info("%s Finished in %s", inputFilename, time.Since(start))
+	utils.Info("✅ %s Finished in %s", inputFilename, time.Since(start))
 	return true
 }
 

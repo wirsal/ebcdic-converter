@@ -15,9 +15,9 @@ func runProcessor(configKey string, processor func(string) bool) {
 		if processor(filePath) {
 			err := utils.MoveFile(filePath)
 			if err != nil {
-				utils.Error("Gagal memindahkan file", err)
+				utils.Error("failed to move file: %v", err)
 			}
-			utils.Info("%s", filePath+" File berhasil diproses dan dipindahkan.")
+			utils.Info("➡️  %s", filePath+" File has been successfully processed and moved.")
 		}
 		utils.WaitUntilNextDay(filePath)
 	}

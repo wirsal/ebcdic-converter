@@ -13,8 +13,8 @@ func PrintWelcome() {
 	cfg := map[string]interface{}{
 		"App Name       ": viper.GetString("server.appName"),
 		"Version        ": viper.GetString("server.version"),
-		"Record Limit   ": fmt.Sprintf("%d baris per batch", viper.GetInt("server.batchSize")),
-		"Wait Duration  ": fmt.Sprintf("%d detik jika file belum tersedia", viper.GetInt("server.waitDuration")),
+		"Record Limit   ": fmt.Sprintf("%d rows per batch", viper.GetInt("server.batchSize")),
+		"Wait Duration  ": fmt.Sprintf("%d seconds if the file is not yet available", viper.GetInt("server.waitDuration")),
 		"Start Time     ": time.Now().Format("2006-01-02 15:04:05"),
 	}
 
