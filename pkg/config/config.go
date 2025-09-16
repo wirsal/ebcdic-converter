@@ -38,6 +38,6 @@ func InitConfig() {
 	// Watch perubahan file config
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		utils.Debug("Config file berubah: %s", e.Name)
+		utils.Debug("♻️ Config file has changed: %s", e.Name)
 	})
 }
