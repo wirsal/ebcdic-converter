@@ -57,23 +57,26 @@ func ParseComp3SignedMode(str, mode string) string {
 	if len(val) == 0 {
 		return ""
 	}
+	if mode == "" {
+		return val
+	} else {
+		sign := val[len(val)-1:]
+		number := val[:len(val)-1]
 
-	sign := val[len(val)-1:]
-	number := val[:len(val)-1]
-
-	switch mode {
-	case "d", "D":
-		if strings.EqualFold(sign, "d") {
+		switch mode {
+		case "d", "D":
+			if strings.EqualFold(sign, "d") {
+				return "-" + number
+			}
+			return " " + number
+		case "c", "C":
+			if strings.EqualFold(sign, "c") {
+				return "+" + number
+			}
 			return "-" + number
+		default:
+			return number
 		}
-		return " " + number
-	case "c", "C":
-		if strings.EqualFold(sign, "c") {
-			return "+" + number
-		}
-		return "-" + number
-	default:
-		return number
 	}
 }
 
